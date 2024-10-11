@@ -2,7 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Konum bilgilerinize uygulama içindeyken erişmek istiyoruz.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Konum bilgilerinize her zaman erişmek istiyoruz.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Konum bilgilerinize her zaman erişmek istiyoruz.</string>
+    <key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Location Tracking App</string>
