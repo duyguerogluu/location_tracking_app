@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -10,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoadingFinish = false;
-  bool requiredPermission = false;
+  bool isRequiredPermission = false;
   Position? currentLocation;
 
   Future<Position> getLocation() async {
@@ -26,20 +28,67 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void permissionOK() {
+    getLocation().then((pos) {
+      isLoadingFinish = true;
+      currentLocation = pos;
+
+      if (pos == null) {
+        isRequiredPermission = true;
+      } else {
+        isRequiredPermission = false;
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    void permissionOK() {
-      getLocation().then((pos) {
-        isLoadingFinish = true;
-      });
-    }
+    permissionOK();
+  }
+
+  getLocal() {
+    Geolocator.requestPermission().then((request) {
+      print("REQUEST : $request");
+      if (Platform.isIOS) {
+        if (request != LocationPermission.whileInUse) {
+          print("NOT LOCATION PERMISSION");
+          return;
+        } else {
+          print("PERMISSION OK");
+          permissionOK();
+        }
+      } else {
+        if (request != LocationPermission.always) {
+          print("NOT LOCATION PERMISSION");
+          return;
+        } else {
+          print("PERMISSION OK");
+          permissionOK();
+        }
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [],
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            getLocal();
+          },
+          child: const Icon(Icons.map),
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton(
+          onPressed: () {
+            print(
+                'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
+          },
+          child: const Text('Show'),
+        ),
+      ],
     );
   }
 }
