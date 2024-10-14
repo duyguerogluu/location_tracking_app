@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Position? currentLocation;
 
   Future<Position> getLocation() async {
-    print("getLocationstart");
+    debugPrint("getLocationstart");
     var perm = await Geolocator.checkPermission();
     if (perm == LocationPermission.denied) {
       return Future.error('Konum izni reddedildi');
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.best)
         .catchError((e) {
-      print('error $e');
+      debugPrint('error $e');
     });
   }
 
@@ -49,21 +49,21 @@ class _HomePageState extends State<HomePage> {
 
   getLocal() {
     Geolocator.requestPermission().then((request) {
-      print("REQUEST : $request");
+      debugPrint("REQUEST : $request");
       if (Platform.isIOS) {
         if (request != LocationPermission.whileInUse) {
-          print("NOT LOCATION PERMISSION");
+          debugPrint("NOT LOCATION PERMISSION");
           return;
         } else {
-          print("PERMISSION OK");
+          debugPrint("PERMISSION OK");
           permissionOK();
         }
       } else {
         if (request != LocationPermission.always) {
-          print("NOT LOCATION PERMISSION");
+          debugPrint("NOT LOCATION PERMISSION");
           return;
         } else {
-          print("PERMISSION OK");
+          debugPrint("PERMISSION OK");
           permissionOK();
         }
       }
@@ -72,23 +72,25 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            getLocal();
-          },
-          child: const Icon(Icons.map),
-        ),
-        const SizedBox(height: 30),
-        ElevatedButton(
-          onPressed: () {
-            print(
-                'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
-          },
-          child: const Text('Show'),
-        ),
-      ],
+    return Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              getLocal();
+            },
+            child: const Icon(Icons.map),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              debugPrint(
+                  'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
+            },
+            child: const Text('Show'),
+          ),
+        ],
+      ),
     );
   }
 }
