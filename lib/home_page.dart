@@ -72,24 +72,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              getLocal();
-            },
-            child: const Icon(Icons.map),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            'Location Tracking',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              debugPrint(
-                  'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
-            },
-            child: const Text('Show'),
-          ),
-        ],
+        ),
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                getLocal();
+              },
+              child: const Icon(Icons.map),
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                debugPrint(
+                    'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
+              },
+              child: const Text('Show'),
+            ),
+          ],
+        ),
       ),
     );
   }
