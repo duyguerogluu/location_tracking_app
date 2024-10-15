@@ -94,6 +94,13 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
+                final snackBar = SnackBar(
+                  content: Center(
+                    child: Text(
+                        'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}'),
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 debugPrint(
                     'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
               },
