@@ -37,7 +37,7 @@ class _MapScreenState extends State<MapScreen> {
       bearing: 00,
       target: _center,
       zoom: 11.0,
-      tilt: 180,
+      tilt: 60,
     );
   }
 }
