@@ -17,6 +17,8 @@ class _MapScreenState extends State<MapScreen> {
 
   final LatLng _center = const LatLng(36.8121, 34.6415);
 
+  Set<Marker> _markers = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +29,7 @@ class _MapScreenState extends State<MapScreen> {
           mapType: MapType.normal,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
+            _addMarker(const LatLng(36.8121, 34.6415));
           },
           initialCameraPosition: _camPos(),
         ));
@@ -39,5 +42,20 @@ class _MapScreenState extends State<MapScreen> {
       zoom: 11.0,
       tilt: 60,
     );
+  }
+
+  void _addMarker(LatLng position) {
+    final String markerId = position.toString();
+    _markers.add(
+      Marker(
+        markerId: MarkerId(markerId),
+        position: position,
+        infoWindow: const InfoWindow(
+          title: 'Marker',
+          snippet: 'Snippet',
+        ),
+      ),
+    );
+    setState(() {});
   }
 }
