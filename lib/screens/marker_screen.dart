@@ -14,7 +14,7 @@ class MarkerScreen extends StatefulWidget {
 class _MarkerScreenState extends State<MarkerScreen> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
-  final LatLng _center = const LatLng(36.8121, 34.6415);
+  final LatLng _center = const LatLng(41.406907598969205, 2.173116555622275);
   final Set<Marker> _markers = {};
 
   @override
@@ -23,8 +23,8 @@ class _MarkerScreenState extends State<MarkerScreen> {
     icons();
   }
 
-  static const CameraPosition _kCasaBatllo = CameraPosition(
-      target: LatLng(41.406907598969205, 2.173116555622275), zoom: 14);
+  // static const CameraPosition _kCasaBatllo = CameraPosition(
+  //     target: LatLng(41.406907598969205, 2.173116555622275), zoom: 14);
 
   static const _homeOne = LatLng(41.397241241482114, 2.175503895690009);
   static const _homeTwo = LatLng(41.39801386026448, 2.1585094187856884);
@@ -89,16 +89,16 @@ class _MarkerScreenState extends State<MarkerScreen> {
 
   void icons() async {
     final Uint8List homeOneMarkerIcon =
-        await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeOneIcon = BitmapDescriptor.fromBytes(homeOneMarkerIcon);
+        await getBytesFromAsset('assets/homeOne.jpg', 44);
+    homeOneIcon = BitmapDescriptor.bytes(homeOneMarkerIcon);
 
     final Uint8List homeTwoMarkerIcon =
-        await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeTwoIcon = BitmapDescriptor.fromBytes(homeTwoMarkerIcon);
+        await getBytesFromAsset('assets/homeTwo.jpg', 44);
+    homeTwoIcon = BitmapDescriptor.bytes(homeTwoMarkerIcon);
 
     final Uint8List homeThreeMarkerIcon =
-        await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeThreeIcon = BitmapDescriptor.fromBytes(homeThreeMarkerIcon);
+        await getBytesFromAsset('assets/homeThree.jpeg', 44);
+    homeThreeIcon = BitmapDescriptor.bytes(homeThreeMarkerIcon);
 
     setState(() {});
   }
