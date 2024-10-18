@@ -29,7 +29,6 @@ class _MarkerScreenState extends State<MarkerScreen> {
   static const _homeOne = LatLng(41.397241241482114, 2.175503895690009);
   static const _homeTwo = LatLng(41.39801386026448, 2.1585094187856884);
   static const _homeThree = LatLng(41.426208159960815, 2.188206838022531);
-  static const _homefour = LatLng(41.42878237257088, 2.209836171110227);
 
   BitmapDescriptor homeOneIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor homeTwoIcon = BitmapDescriptor.defaultMarker;
@@ -37,9 +36,10 @@ class _MarkerScreenState extends State<MarkerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Marker homeOne = addMarker('first', _homeOne, homeTwoIcon, 'Birinci Ev');
-    Marker homeTwo = addMarker('first', _homeTwo, homeTwoIcon, 'İkinci Ev');
-    Marker homeThree = addMarker('first', _homeThree, homeTwoIcon, 'Üçüncü Ev');
+    Marker homeOne = addMarker('homeOne', _homeOne, homeOneIcon, 'Birinci Ev');
+    Marker homeTwo = addMarker('homeTwo', _homeTwo, homeTwoIcon, 'İkinci Ev');
+    Marker homeThree =
+        addMarker('homeThree', _homeThree, homeThreeIcon, 'Üçüncü Ev');
 
     return Scaffold(
       appBar: AppBar(
@@ -65,18 +65,18 @@ class _MarkerScreenState extends State<MarkerScreen> {
     );
   }
 
-  addMarker(String id, LatLng position, BitmapDescriptor icon, String title) {
-    Marker(
+  Marker addMarker(
+      String id, LatLng position, BitmapDescriptor icon, String title) {
+    return Marker(
       markerId: MarkerId(id),
       position: position,
+      icon: icon, // Burada icon parametresini eklemeyi unutmayın
       infoWindow: InfoWindow(
         title: title,
       ),
     );
-    setState(() {});
   }
 
-//imagelerin bytelerını maps e uygun hale getirmek için byte düzenlmesini yapmam lazım
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
@@ -90,13 +90,15 @@ class _MarkerScreenState extends State<MarkerScreen> {
   void icons() async {
     final Uint8List homeOneMarkerIcon =
         await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeOneIcon = BitmapDescriptor.bytes(homeOneMarkerIcon);
+    homeOneIcon = BitmapDescriptor.fromBytes(homeOneMarkerIcon);
+
     final Uint8List homeTwoMarkerIcon =
         await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeTwoIcon = BitmapDescriptor.bytes(homeTwoMarkerIcon);
+    homeTwoIcon = BitmapDescriptor.fromBytes(homeTwoMarkerIcon);
+
     final Uint8List homeThreeMarkerIcon =
         await getBytesFromAsset('assets/homeThree.jpeg', 100);
-    homeThreeIcon = BitmapDescriptor.bytes(homeThreeMarkerIcon);
+    homeThreeIcon = BitmapDescriptor.fromBytes(homeThreeMarkerIcon);
 
     setState(() {});
   }

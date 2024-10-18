@@ -14,10 +14,18 @@ class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  final LatLng _center = const LatLng(36.8121, 34.6415);
+  final LatLng _center = const LatLng(41.406907598969205, 2.173116555622275);
 
   @override
   Widget build(BuildContext context) {
+    Marker firsthome = const Marker(
+      markerId: MarkerId('first'),
+      position: LatLng(
+        41.426208159960815,
+        2.188206838022531,
+      ),
+    );
+
     return Scaffold(
         appBar: AppBar(
           title: const Center(child: Text("Google Map")),
@@ -28,6 +36,7 @@ class _MapScreenState extends State<MapScreen> {
             _controller.complete(controller);
           },
           initialCameraPosition: _camPos(),
+          markers: {firsthome},
         ));
   }
 

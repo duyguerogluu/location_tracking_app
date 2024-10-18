@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MarkerScreen
-      (),
+      home: const MapScreen(),
     );
   }
 }
