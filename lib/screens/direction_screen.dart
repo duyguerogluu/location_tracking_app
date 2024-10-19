@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class DirectionScreen extends StatefulWidget {
   const DirectionScreen({super.key});
@@ -37,11 +39,22 @@ class _DirectionScreenState extends State<DirectionScreen> {
     _getDirection();
   }
 
-  void _getDirection() {
+  void _getDirection() async {
     final String startPosition =
         "${_startLocation.latitude},${_startLocation.longitude}";
     final String finishPosition =
         "${_finishLocation.latitude},${_finishLocation.longitude}";
     const String destination = "&destination";
+
+    const String mainApi =
+        "https://maps.googleapis.com/maps/api/directions/json?origin=";
+
+    const String key = "&key";
+    final String apiKey = dotenv.env['apiKey'] ?? "";
+
+    final Uri uri = Uri.parse(
+        mainApi + startPosition + destination + finishPosition + key + apiKey);
+
+    var response = await http.get(uri);
   }
 }
