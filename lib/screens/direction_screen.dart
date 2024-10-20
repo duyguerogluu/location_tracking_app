@@ -36,6 +36,8 @@ class _DirectionScreenState extends State<DirectionScreen> {
   final LatLng _finishLocation =
       const LatLng(41.440519653383596, 2.2451869794393846);
 
+  final Set<Polyline> _polylines = <Polyline>{};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +49,7 @@ class _DirectionScreenState extends State<DirectionScreen> {
           target: _center,
           zoom: 7.0,
         ),
+        polylines: _polylines,
       ),
     );
   }

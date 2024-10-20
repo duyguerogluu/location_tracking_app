@@ -17,6 +17,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:location_tracking_app/screens/direction_screen.dart';
+import 'package:location_tracking_app/screens/direction_test.dart';
 import 'package:location_tracking_app/screens/home_page.dart';
 import 'package:location_tracking_app/screens/map_screen.dart';
 import 'package:location_tracking_app/screens/marker_screen.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const DirectionScreen(),
+      home: const DirectionTest(),
     );
   }
 }
