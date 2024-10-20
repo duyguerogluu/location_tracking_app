@@ -5,7 +5,7 @@ android/app/src/main/AndroidManifest.xml
 *.log
 *.pyc
 *.swp
-.env
+*.env
 .DS_Store
 .atom/
 .build/
