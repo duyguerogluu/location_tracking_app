@@ -16,7 +16,6 @@
  */
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -44,12 +43,19 @@ class _DirectionScreenState extends State<DirectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Direction Screen'),
+        title: const Center(
+          child: Text(
+            'Direction Screen',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        backgroundColor: Colors.green,
       ),
       body: GoogleMap(
+        onMapCreated: onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 7.0,
+          target: _startLocation,
+          zoom: 10.0,
         ),
         polylines: _polylines,
       ),
@@ -78,10 +84,23 @@ class _DirectionScreenState extends State<DirectionScreen> {
         mainApi + startPosition + destination + finishPosition + key + apiKey);
 
     var response = await http.get(uri);
+    debugPrint(response.body);
 
     Map data = json.decode(response.body);
-    String encodedString = data['roustes'][0]['overview_polyline']['points'];
+    String encodedString = data['routes'][0]['overview_polyline']['points'];
     List<LatLng> points = _decodePoly(encodedString);
+
+    setState(() {
+      _polylines.add(
+        Polyline(
+          polylineId: const PolylineId('first'),
+          points: points,
+          visible: true,
+          //width: 3,
+          color: Colors.green,
+        ),
+      );
+    });
   }
 
   List<LatLng> _decodePoly(String encoded) {
