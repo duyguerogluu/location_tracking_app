@@ -16,6 +16,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:location_tracking_app/widgets/bottom_navigation_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  BottomNavigationBar(),
+      home:const BottomNavigation(),
     );
   }
 }
