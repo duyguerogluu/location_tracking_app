@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:location_tracking_app/api.dart';
 
 class DirectionScreen extends StatefulWidget {
   const DirectionScreen({super.key});
@@ -72,13 +73,13 @@ class _DirectionScreenState extends State<DirectionScreen> {
         "${_startLocation.latitude},${_startLocation.longitude}";
     final String finishPosition =
         "${_finishLocation.latitude},${_finishLocation.longitude}";
-    const String destination = "&destination";
+    const String destination = "&destination=";
 
     const String mainApi =
         "https://maps.googleapis.com/maps/api/directions/json?origin=";
 
     const String key = "&key";
-    final String apiKey = dotenv.env['apiKey'] ?? "";
+    // final String apiKey = dotenv.env['apiKey'] ?? "";
 
     final Uri uri = Uri.parse(
         mainApi + startPosition + destination + finishPosition + key + apiKey);
@@ -86,21 +87,50 @@ class _DirectionScreenState extends State<DirectionScreen> {
     var response = await http.get(uri);
     debugPrint(response.body);
 
-    Map data = json.decode(response.body);
-    String encodedString = data['routes'][0]['overview_polyline']['points'];
-    List<LatLng> points = _decodePoly(encodedString);
+    if (response.statusCode == 200) {
+      Map data = json.decode(response.body);
 
-    setState(() {
-      _polylines.add(
-        Polyline(
-          polylineId: const PolylineId('first'),
-          points: points,
-          visible: true,
-          //width: 3,
-          color: Colors.green,
-        ),
-      );
-    });
+      if (data['routes'].isNotEmpty) {
+        String encodedString = data['routes'][0]['overview_polyline']['points'];
+        List<LatLng> points = _decodePoly(encodedString);
+
+        setState(() {
+          _polylines.add(
+            Polyline(
+              polylineId: const PolylineId('first'),
+              points: points,
+              visible: true,
+              width: 3,
+              color: Colors.green,
+            ),
+          );
+        });
+      } else {
+        debugPrint('No routes found');
+        _showErrorDialog('No routes found');
+      }
+    } else {
+      debugPrint('Error: ${response.statusCode}');
+    }
+  }
+
+  _showErrorDialog(String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: Text(message),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Okay'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 
   List<LatLng> _decodePoly(String encoded) {
