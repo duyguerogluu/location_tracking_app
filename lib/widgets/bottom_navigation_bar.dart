@@ -17,22 +17,25 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BottomNavigationBar extends StatefulWidget {
+  const BottomNavigationBar({super.key});
 
   @override
+  State<BottomNavigationBar> createState() => _BottomNavigationBarState();
+}
+
+class _BottomNavigationBarState extends State<BottomNavigationBar> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+        title: const Text(
+          'Bottom Navigation Bar',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      home:  BottomNavigationBar(),
     );
   }
 }
