@@ -56,23 +56,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          fixedColor: Colors.black,
+          backgroundColor: Colors.deepPurple.shade100,
           currentIndex: selectedPage,
           onTap: changePage,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
+              label: 'Home',
             ),
           ]),
       appBar: AppBar(
