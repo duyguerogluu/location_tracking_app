@@ -52,6 +52,35 @@ class _BottomNavigationState extends State<BottomNavigation> {
     }
   }
 
+  showAppBarText(int selectedPage) {
+    if (selectedPage == 0) {
+      return const Text(
+        'Map Screen',
+        style: TextStyle(color: Colors.white),
+      );
+    } else if (selectedPage == 1) {
+      return const Text(
+        'Home Screen',
+        style: TextStyle(color: Colors.white),
+      );
+    } else if (selectedPage == 2) {
+      return const Text(
+        'Marker Screen',
+        style: TextStyle(color: Colors.white),
+      );
+    } else if (selectedPage == 3) {
+      return const Text(
+        'Direction Screen',
+        style: TextStyle(color: Colors.white),
+      );
+    } else if (selectedPage == 4) {
+      return const Text(
+        'Direction Test',
+        style: TextStyle(color: Colors.white),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,11 +114,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ]),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        title: const Center(
-          child: Text(
-            'Bottom Navigation Bar',
-            style: TextStyle(color: Colors.white),
-          ),
+        title: Center(
+          child: showAppBarText(selectedPage),
         ),
       ),
       body: showPage(selectedPage),
