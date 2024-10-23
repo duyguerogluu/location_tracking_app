@@ -33,14 +33,11 @@ class _DirectionTestState extends State<DirectionTest> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Direction Test")),
-      body: GoogleMap(
-        polylines: _polylines,
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(41.406907598969205, 2.173116555622275),
-          zoom: 12,
-        ),
+    return GoogleMap(
+      polylines: _polylines,
+      initialCameraPosition: const CameraPosition(
+        target: LatLng(41.406907598969205, 2.173116555622275),
+        zoom: 12,
       ),
     );
   }

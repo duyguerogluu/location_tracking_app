@@ -58,18 +58,13 @@ class _MarkerScreenState extends State<MarkerScreen> {
     Marker homeThree =
         addMarker('homeThree', _homeThree, homeThreeIcon, 'Üçüncü Ev');
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text("Google Map")),
-      ),
-      body: GoogleMap(
-        mapType: MapType.normal,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        initialCameraPosition: _camPos(),
-        markers: {homeOne, homeTwo, homeThree},
-      ),
+    return GoogleMap(
+      mapType: MapType.normal,
+      onMapCreated: (GoogleMapController controller) {
+        _controller.complete(controller);
+      },
+      initialCameraPosition: _camPos(),
+      markers: {homeOne, homeTwo, homeThree},
     );
   }
 

@@ -42,24 +42,13 @@ class _DirectionScreenState extends State<DirectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Direction Screen',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        backgroundColor: Colors.green,
+    return GoogleMap(
+      onMapCreated: onMapCreated,
+      initialCameraPosition: CameraPosition(
+        target: _startLocation,
+        zoom: 10.0,
       ),
-      body: GoogleMap(
-        onMapCreated: onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _startLocation,
-          zoom: 10.0,
-        ),
-        polylines: _polylines,
-      ),
+      polylines: _polylines,
     );
   }
 

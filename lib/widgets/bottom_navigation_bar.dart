@@ -64,7 +64,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Map',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -72,24 +72,27 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Marker',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Direction',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'DirectionTest',
             ),
           ]),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        title: const Text(
-          'Bottom Navigation Bar',
-          style: TextStyle(color: Colors.white),
+        title: const Center(
+          child: Text(
+            'Bottom Navigation Bar',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
+      body: showPage(selectedPage),
     );
   }
 }

@@ -89,42 +89,31 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Location Tracking',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              getLocal();
+            },
+            child: const Icon(Icons.map),
           ),
-        ),
-        backgroundColor: Colors.blueGrey,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                getLocal();
-              },
-              child: const Icon(Icons.map),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                final snackBar = SnackBar(
-                  content: Center(
-                    child: Text(
-                        'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}'),
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                debugPrint(
-                    'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
-              },
-              child: const Text('Show'),
-            ),
-          ],
-        ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              final snackBar = SnackBar(
+                content: Center(
+                  child: Text(
+                      'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}'),
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              debugPrint(
+                  'x: ${currentLocation?.latitude}   ,      y:${currentLocation?.longitude}');
+            },
+            child: const Text('Show'),
+          ),
+        ],
       ),
     );
   }
