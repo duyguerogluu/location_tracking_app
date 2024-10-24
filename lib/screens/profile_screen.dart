@@ -24,10 +24,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   'Kullanıcı Bilgileri',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                const CircleAvatar(radius: 40),
+                const CircleAvatar(
+                  radius: 40,
+                  backgroundImage: AssetImage('assets/homeOne.jpg'),
+                ),
                 const SizedBox(height: 16),
-                const Text('Ad: John Doe'),
-                const Text('E-posta: johndoe@example.com'),
+                const Text('Ad: duygu'),
+                const Text('E-posta: duygu@example.com'),
                 const Text('Telefon: +90 123 456 7890'),
                 const SizedBox(height: 32),
                 const Text(
