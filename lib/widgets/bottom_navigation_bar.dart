@@ -21,6 +21,7 @@ import 'package:location_tracking_app/screens/direction_test.dart';
 import 'package:location_tracking_app/screens/home_page.dart';
 import 'package:location_tracking_app/screens/map_screen.dart';
 import 'package:location_tracking_app/screens/marker_screen.dart';
+import 'package:location_tracking_app/screens/profile_screen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -49,6 +50,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
       return const DirectionScreen();
     } else if (selectedPage == 4) {
       return const DirectionTest();
+    } else if (selectedPage == 5) {
+      return const ProfileScreen();
     }
   }
 
@@ -76,6 +79,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
     } else if (selectedPage == 4) {
       return const Text(
         'Direction Test',
+        style: TextStyle(color: Colors.white),
+      );
+    } else if (selectedPage == 5) {
+      return const Text(
+        'Profile',
         style: TextStyle(color: Colors.white),
       );
     }
@@ -110,6 +118,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'DirectionTest',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Profile',
             ),
           ]),
       appBar: AppBar(
