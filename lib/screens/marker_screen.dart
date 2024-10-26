@@ -82,7 +82,7 @@ class _MarkerScreenState extends State<MarkerScreen> {
     return Marker(
       markerId: MarkerId(id),
       position: position,
-      icon: icon, // Burada icon parametresini eklemeyi unutmayın
+      icon: icon, 
       infoWindow: InfoWindow(
         title: title,
       ),

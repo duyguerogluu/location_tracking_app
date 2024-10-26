@@ -40,15 +40,20 @@ class _FollowedScreenState extends State<FollowedScreen> {
                   itemCount: users.length,
                   itemBuilder: (context, index) {
                     final user = users[index];
-                    return Card(
-                        margin: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          title: Text(user.name),
-                          subtitle: Text(user.surname),
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(user.image),
-                          ),
-                        ));
+                    return GestureDetector(
+                      onTap: (){
+                         
+                      },
+                      child: Card(
+                          margin: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            title: Text(user.name),
+                            subtitle: Text(user.surname),
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(user.image),
+                            ),
+                          )),
+                    );
                   });
             }
             return const Text('jhkkjlkj');
