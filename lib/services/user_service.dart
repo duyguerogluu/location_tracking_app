@@ -5,7 +5,7 @@ import 'package:location_tracking_app/models/user.dart';
 
 class UserService {
   Future<List<User>> fetchUsers() async {
-    final response = await http.get(Uri.parse('http://localhost:3000/users'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:3000/users'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);

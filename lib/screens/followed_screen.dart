@@ -26,18 +26,32 @@ class _FollowedScreenState extends State<FollowedScreen> {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
+              debugPrint('Error: ${snapshot.error}');
+              return Center(
+                child: Column(
+                  children: [
+                    Text('Error: ${snapshot.error}'),
+                  ],
+                ),
+              );
             } else if (snapshot.hasData) {
-              final user = snapshot.data!;
+              final users = snapshot.data!;
               return ListView.builder(
-                  itemCount: user.length,
+                  itemCount: users.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Image.network(user.image),
-                      title: Text('${user.length} '),
-                    );
+                    final user = users[index];
+                    return Card(
+                        margin: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          title: Text(user.name),
+                          subtitle: Text(user.surname),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(user.image),
+                          ),
+                        ));
                   });
             }
+            return const Text('jhkkjlkj');
           }),
     );
   }
