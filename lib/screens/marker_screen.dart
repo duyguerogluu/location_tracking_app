@@ -85,9 +85,12 @@ class _MarkerScreenState extends State<MarkerScreen> {
   }
 
   CameraPosition _camPos() {
+    final user = widget.users[1];
+    LatLng userLocation =
+        LatLng(user.location.latitude, user.location.longitude);
     return CameraPosition(
       bearing: 0,
-      target: _center,
+      target: userLocation,
       zoom: 11.0,
       tilt: 60,
     );
