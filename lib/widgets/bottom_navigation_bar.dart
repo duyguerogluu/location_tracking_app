@@ -45,7 +45,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     } else if (selectedPage == 1) {
       return const HomePage();
     } else if (selectedPage == 2) {
-      return const MarkerScreen();
+      return const DirectionScreen();
     } else if (selectedPage == 3) {
       return const DirectionScreen();
     } else if (selectedPage == 4) {

@@ -20,9 +20,11 @@ import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location_tracking_app/models/user.dart';
 
 class MarkerScreen extends StatefulWidget {
-  const MarkerScreen({super.key});
+  final List<User> users;
+  const MarkerScreen({super.key, required this.users});
 
   @override
   State<MarkerScreen> createState() => _MarkerScreenState();
@@ -64,8 +66,22 @@ class _MarkerScreenState extends State<MarkerScreen> {
         _controller.complete(controller);
       },
       initialCameraPosition: _camPos(),
-      markers: {homeOne, homeTwo, homeThree},
+      markers: _createMarkers(),
     );
+  }
+
+  Set<Marker> _createMarkers() {
+    Set<Marker> markers = {};
+    for (int i = 0; i < widget.users.length; i++) {
+      final user = widget.users[i];
+      LatLng userLocation =
+          LatLng(user.location.latitude, user.location.longitude);
+      markers.add(
+        addMarker('user${i + 1}', userLocation, BitmapDescriptor.defaultMarker,
+            '${user.name} ${user.surname}'),
+      );
+    }
+    return markers;
   }
 
   CameraPosition _camPos() {
@@ -82,7 +98,7 @@ class _MarkerScreenState extends State<MarkerScreen> {
     return Marker(
       markerId: MarkerId(id),
       position: position,
-      icon: icon, 
+      icon: icon,
       infoWindow: InfoWindow(
         title: title,
       ),

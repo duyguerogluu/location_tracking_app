@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location_tracking_app/models/user.dart';
+import 'package:location_tracking_app/screens/map_screen.dart';
+import 'package:location_tracking_app/screens/marker_screen.dart';
 import 'package:location_tracking_app/services/user_service.dart';
 
 class FollowedScreen extends StatefulWidget {
@@ -41,8 +43,12 @@ class _FollowedScreenState extends State<FollowedScreen> {
                   itemBuilder: (context, index) {
                     final user = users[index];
                     return GestureDetector(
-                      onTap: (){
-                         
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MarkerScreen(users: users)));
                       },
                       child: Card(
                           margin: const EdgeInsets.all(8.0),
