@@ -20,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:location_tracking_app/api.dart';
 
 class DirectionScreen extends StatefulWidget {
   const DirectionScreen({super.key});
@@ -68,10 +67,10 @@ class _DirectionScreenState extends State<DirectionScreen> {
         "https://maps.googleapis.com/maps/api/directions/json?origin=";
 
     const String key = "&key";
-    // final String apiKey = dotenv.env['apiKey'] ?? "";
+   
 
     final Uri uri = Uri.parse(
-        mainApi + startPosition + destination + finishPosition + key + apiKey);
+        mainApi + startPosition + destination + finishPosition + key );//todo: add your API key here
 
     var response = await http.get(uri);
     debugPrint(response.body);

@@ -1,3 +1,20 @@
+/*
+ *  This file is part of location_tracking_app.
+ *
+ *  location_tracking_app is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  location_tracking_app is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with location_tracking_app.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -9,7 +26,10 @@ class DirectionTest extends StatefulWidget {
 }
 
 class _DirectionTestState extends State<DirectionTest> {
-  final Set<Polyline> _polylines = <Polyline>{};
+  late GoogleMapController mapController;
+  Set<Polyline> _polylines = {};
+  LatLng _startLocation = LatLng(37.7749, -122.4194);
+  LatLng _endLocation = LatLng(34.0522, -118.2437);
 
   @override
   void initState() {
@@ -34,11 +54,18 @@ class _DirectionTestState extends State<DirectionTest> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      polylines: _polylines,
-      initialCameraPosition: const CameraPosition(
-        target: LatLng(41.406907598969205, 2.173116555622275),
-        zoom: 12,
+      onMapCreated: (GoogleMapController controller) {
+        mapController = controller;
+       
+      },
+      initialCameraPosition: CameraPosition(
+        target: _startLocation,
+        zoom: 7,
       ),
+      polylines: _polylines,
     );
   }
+
+
+ 
 }
