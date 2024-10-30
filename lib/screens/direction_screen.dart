@@ -69,8 +69,11 @@ class _DirectionScreenState extends State<DirectionScreen> {
 
     const String key = "&key";
 
-    final Uri uri = Uri.parse(
-        mainApi + startPosition + destination + finishPosition + key + apiKey);
+     final Uri uri = Uri.parse(
+         mainApi + startPosition + destination + finishPosition + key + apiKey);
+
+    // final Uri uri = Uri.parse(
+    //     "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key="+ apiKey);
 
     var response = await http.get(uri);
     debugPrint(response.body);

@@ -60,13 +60,20 @@ class _MarkerScreenState extends State<MarkerScreen> {
     Marker homeThree =
         addMarker('homeThree', _homeThree, homeThreeIcon, 'Üçüncü Ev');
 
+    _markers.add(addMarker('homeOne', _homeOne, homeOneIcon, 'Birinci Ev'));
+    _markers.add(addMarker('homeTwo', _homeTwo, homeTwoIcon, 'İkinci Ev'));
+    _markers
+        .add(addMarker('homeThree', _homeThree, homeThreeIcon, 'Üçüncü Ev'));
+
+    _markers.addAll(_createMarkers());
+
     return GoogleMap(
       mapType: MapType.normal,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
       },
       initialCameraPosition: _camPos(),
-      markers: _createMarkers(),
+      markers: _markers,
     );
   }
 
