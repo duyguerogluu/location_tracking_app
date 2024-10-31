@@ -1,5 +1,6 @@
 lib/secret.dart
 android/app/src/main/AndroidManifest.xml
+android/key.properties
 
 
 

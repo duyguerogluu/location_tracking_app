@@ -3,6 +3,13 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    alias(libs.plugins.android.application)
+}
+
+def apiKeyProps = new Properties()
+def apiKeyPropsFile = rootProject.file('keys.properties')
+if (apiKeyPropsFile.exists()) {
+    apiKeyPropsFile.withInputStream { apiKeyProps.load(it) }
 }
 
 android {
@@ -28,7 +35,9 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        resValue "string", "MAPS_API_KEY", "\"${MAPS_API_KEY}\""
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "MAPS_API_KEY", apiKeyProps["MAPS_API_KEY"]
     }
 
     buildTypes {
@@ -36,6 +45,7 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
+        
         }
     }
 }
