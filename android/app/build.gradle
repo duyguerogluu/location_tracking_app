@@ -3,14 +3,11 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
-    alias(libs.plugins.android.application)
 }
 
 def apiKeyProps = new Properties()
-def apiKeyPropsFile = rootProject.file('keys.properties')
-if (apiKeyPropsFile.exists()) {
-    apiKeyPropsFile.withInputStream { apiKeyProps.load(it) }
-}
+def apiKeyPropsFile = rootProject.file('key.properties')
+apiKeyPropsFile.withInputStream { apiKeyProps.load(it) }
 
 android {
     namespace = "com.example.location_tracking_app"

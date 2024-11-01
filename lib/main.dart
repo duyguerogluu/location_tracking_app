@@ -17,8 +17,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:location_tracking_app/screens/direction_screen.dart';
+import 'package:location_tracking_app/screens/direction_test.dart';
 import 'package:location_tracking_app/screens/followed_screen.dart';
+import 'package:location_tracking_app/screens/map_screen.dart';
 import 'package:location_tracking_app/screens/profile_screen.dart';
+import 'package:location_tracking_app/screens/test_screen.dart';
+import 'package:location_tracking_app/screens/testt_screen.dart';
 import 'package:location_tracking_app/widgets/bottom_navigation_bar.dart';
 
 void main() {
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const BottomNavigation(),
+      home: const DirectionTest(),
     );
   }
 }
