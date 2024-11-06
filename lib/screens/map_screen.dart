@@ -31,15 +31,18 @@ class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  final LatLng _center = const LatLng(41.406907598969205, 2.173116555622275);
+  final LatLng _center = const LatLng(
+    41.31916665435458,
+    16.271273816703523,
+  );
 
   @override
   Widget build(BuildContext context) {
     Marker firsthome = const Marker(
       markerId: MarkerId('first'),
       position: LatLng(
-        41.426208159960815,
-        2.188206838022531,
+        41.31916665435458,
+        16.271273816703523,
       ),
     );
 

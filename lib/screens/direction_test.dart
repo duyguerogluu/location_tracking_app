@@ -28,8 +28,8 @@ class DirectionTest extends StatefulWidget {
 class _DirectionTestState extends State<DirectionTest> {
   late GoogleMapController mapController;
   Set<Polyline> _polylines = {};
-  LatLng _startLocation = LatLng(37.7749, -122.4194);
-  LatLng _endLocation = LatLng(34.0522, -118.2437);
+  LatLng _startLocation = LatLng(41.40902647035469, 2.2008270607482556);
+  LatLng _endLocation = LatLng(41.440519653383596, 2.2451869794393846);
 
   @override
   void initState() {
@@ -56,16 +56,12 @@ class _DirectionTestState extends State<DirectionTest> {
     return GoogleMap(
       onMapCreated: (GoogleMapController controller) {
         mapController = controller;
-       
       },
       initialCameraPosition: CameraPosition(
         target: _startLocation,
-        zoom: 7,
+        zoom: 14,
       ),
       polylines: _polylines,
     );
   }
-
-
- 
 }

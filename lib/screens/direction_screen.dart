@@ -58,10 +58,16 @@ class _DirectionScreenState extends State<DirectionScreen> {
   }
 
   void _getDirection() async {
-    final String startPosition =
-        "${_startLocation.latitude},${_startLocation.longitude}";
-    final String finishPosition =
-        "${_finishLocation.latitude},${_finishLocation.longitude}";
+    final String startPosition = '41.40902647035469, 2.2008270607482556';
+
+    final String finishPosition = '41.40902647035469, 2.2008270607482556';
+
+    List pointsss = <String>[startPosition, finishPosition];
+
+    // final String startPosition =
+    //     "${_startLocation.latitude},${_startLocation.longitude}";
+    // final String finishPosition =
+    //     "${_finishLocation.latitude},${_finishLocation.longitude}";
     const String destination = "&destination=";
 
     const String mainApi =
@@ -69,20 +75,34 @@ class _DirectionScreenState extends State<DirectionScreen> {
 
     const String key = "&key";
 
-     final Uri uri = Uri.parse(
-         mainApi + startPosition + destination + finishPosition + key + apiKey);
+    final Uri uri = Uri.parse(
+        mainApi + startPosition + destination + finishPosition + key + apiKey);
 
     // final Uri uri = Uri.parse(
     //     "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key="+ apiKey);
 
     var response = await http.get(uri);
     debugPrint(response.body);
+    List<LatLng> pointss = _decodePoly(finishPosition);
+
+    setState(() {
+      _polylines.add(
+        Polyline(
+          polylineId: const PolylineId('first'),
+          points: pointss,
+          visible: true,
+          width: 3,
+          color: Colors.green,
+        ),
+      );
+    });
 
     if (response.statusCode == 200) {
       Map data = json.decode(response.body);
 
       if (data['routes'].isNotEmpty) {
         String encodedString = data['routes'][0]['overview_polyline']['points'];
+        debugPrint('ENCODED STRİNG::::::::::::::: $encodedString');
         List<LatLng> points = _decodePoly(encodedString);
 
         setState(() {
