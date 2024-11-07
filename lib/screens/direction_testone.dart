@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:location_tracking_app/secret.dart';
 
 class TestOne extends StatefulWidget {
   const TestOne({super.key});
@@ -11,15 +12,14 @@ class TestOne extends StatefulWidget {
 
 class _TestOneState extends State<TestOne> {
   late GoogleMapController mapController;
-  double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
-  double _destLatitude = 6.849660, _destLongitude = 3.648190;
-  // double _originLatitude = 26.48424, _originLongitude = 50.04551;
-  // double _destLatitude = 26.46423, _destLongitude = 50.06358;
+  final double _originLatitude = 36.7717354189754,
+      _originLongitude = 34.57105946484366;
+  final double _destLatitude = 36.806863687323705,
+      _destLongitude = 34.591066500426635;
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPiKey = "Please provide your api key";
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class _TestOneState extends State<TestOne> {
   }
 
   _addPolyLine() {
-    PolylineId id = PolylineId("poly");
+    const PolylineId id = PolylineId("poly");
     Polyline polyline = Polyline(
         polylineId: id, color: Colors.red, points: polylineCoordinates);
     polylines[id] = polyline;
@@ -75,7 +75,7 @@ class _TestOneState extends State<TestOne> {
 
   _getPolyline() async {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleApiKey: googleAPiKey,
+      googleApiKey: apiKey,
       request: PolylineRequest(
         origin: PointLatLng(_originLatitude, _originLongitude),
         destination: PointLatLng(_destLatitude, _destLongitude),
